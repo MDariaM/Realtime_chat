@@ -69,8 +69,6 @@
     </div>
 </template>
 <script>
-import User from "../apis/User";
-
 export default {
   data() {
     return {
@@ -84,7 +82,8 @@ export default {
     };
   },
     methods: {
-      register() {
+      async register() {
+        await this.$axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie')
         User.register(this.form)
           .then( () => {
             this.$router.push({name: "Login"});

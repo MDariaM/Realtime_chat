@@ -6,13 +6,12 @@
     <div class="text-center space-x-12 pt-20">
       <NuxtLink to="/Login" class = "bg-purple-600 text-white font-semibold py-2 px-10 w-full rounded">Login</NuxtLink>
       <NuxtLink to="/Register" class = "bg-purple-600 text-white font-semibold py-2 px-10 w-full rounded">Register</NuxtLink>
+      <button @click="logout">Logout</button>
     </div>
   </div>  
 </template>
 
 <script>
-import axios from 'axios'
-
   export default {
     methods: {
       async login() {
@@ -22,6 +21,10 @@ import axios from 'axios'
             path: '/login'
         })
 
+      },
+
+      async logout() {
+         await this.$auth.logout();
       }
     }
   }

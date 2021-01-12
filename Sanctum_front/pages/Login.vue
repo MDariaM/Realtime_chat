@@ -38,9 +38,6 @@
 </template>
 
 <script>
-import axios from "axios"  
-import User from "../apis/User";
-
 export default {
   data() {
     return {
@@ -52,8 +49,10 @@ export default {
   },
   
   methods: {
+
     async login() {
 
+      await this.$axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie')
       await this.$auth.login({
         data: {
           email: this.email,

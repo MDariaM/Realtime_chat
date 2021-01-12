@@ -18,12 +18,12 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::middleware('auth:api')->get('auth/user', 'App\Http\Controllers\API\AuthController@user');
+
 Route::post('auth/login', 'App\Http\Controllers\API\AuthController@login');
 
-// Route::middleware('auth:sanctum')->group(function () {
-//     Route::get('auth/user', 'App\Http\Controllers\API\AuthController@user');
-//     Route::post('auth/logout', 'App\Http\Controllers\API\AuthController@logout');
-// });
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('auth/user', 'App\Http\Controllers\API\AuthController@user');
+    Route::post('auth/logout', 'App\Http\Controllers\API\AuthController@logout');
+});
 
 Route::post('auth/logout', 'App\Http\Controllers\API\AuthController@logout');
