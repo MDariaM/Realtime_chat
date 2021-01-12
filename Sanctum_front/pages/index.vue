@@ -15,7 +15,7 @@
   export default {
     methods: {
       async login() {
-        await this.$axios.get('http://localhost:8000/sanctum/csrf-cookie')
+        await this.$axios.get('/../sanctum/csrf-cookie')
 
         this.$router.push({
             path: '/login'

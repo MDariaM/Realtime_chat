@@ -52,7 +52,7 @@ export default {
 
     async login() {
 
-      await this.$axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie')
+      await this.$axios.get('/../sanctum/csrf-cookie')
       await this.$auth.login({
         data: {
           email: this.email,
@@ -63,7 +63,7 @@ export default {
 
     redirectToHomeIfLoggedIn() {
       if (this.$auth.loggedIn) {
-        this.$router.push(this.$cookies.get('auth.redirect') ?? '/')
+        this.$router.push(this.$cookies.get('auth.redirect') ?? '/chat')
         return
       }
       this.loggedIn = false
