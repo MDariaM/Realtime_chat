@@ -69,6 +69,7 @@
     </div>
 </template>
 <script>
+import User from '../apis/User'
 export default {
   data() {
     return {
@@ -84,15 +85,21 @@ export default {
     methods: {
       async register() {
         await this.$axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie')
-        User.register(this.form)
-          .then( () => {
-            this.$router.push({name: "Login"});
-          })
-          .catch(error => {
-            if(error.response.status === 422) {
-                this.errors = error.response.data.errors;
-            }
-          });
+      //   User.register(this.form)
+      //     .then( () => {
+      //       this.$router.push({name: "Login"});
+      //     })
+      //     .catch(error => {
+      //       // if(error.response.status === 422) {
+      //       //     this.errors = error.response.data.errors;
+      //       // }
+      //       console.log(error);
+      //     });
+      //отправить post на /register на laravel, 
+      // редирект на /login 
+      // this.$axios.post('/register', this.form)
+      this.$router.push('/login');
+
       }
     }
 };
