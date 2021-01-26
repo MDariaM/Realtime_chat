@@ -1,14 +1,16 @@
 <template>
-  <div class="flex-auto h-full">
-    <div class="title md:text-center pt-20 text-purple-600">
-                  Let's have a Chat
+  <div>
+    <div class="flex-auto h-full">
+      <div class="title md:text-center pt-20 text-purple-600">
+        <h1>Let's have a Chat</h1>
+      </div> 
+      <div class="text-center space-x-12 pt-20">
+        <NuxtLink to="/Login" class = "bg-purple-600 text-white font-semibold py-2 px-10 w-full rounded">Login</NuxtLink>
+        <NuxtLink to="/Register" class = "bg-purple-600 text-white font-semibold py-2 px-10 w-full rounded">Register</NuxtLink>
+        <button @click="logout">Logout</button>
+      </div>
     </div> 
-    <div class="text-center space-x-12 pt-20">
-      <NuxtLink to="/Login" class = "bg-purple-600 text-white font-semibold py-2 px-10 w-full rounded">Login</NuxtLink>
-      <NuxtLink to="/Register" class = "bg-purple-600 text-white font-semibold py-2 px-10 w-full rounded">Register</NuxtLink>
-      <button @click="logout">Logout</button>
-    </div>
-  </div>  
+  </div>   
 </template>
 
 <script>

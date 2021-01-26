@@ -19,4 +19,6 @@ Route::get('/', function () {
 });
 
 // Route::get('/chat', 'ChatsController@index');
-// Route::get('/messages', 'ChatsController@fetchMessages');
+
+Route::get('api/messages', 'App\Http\Controllers\ChatsController@fetchMessages');
+Route::post('api/messages', 'App\Http\Controllers\ChatsController@sendMessage');

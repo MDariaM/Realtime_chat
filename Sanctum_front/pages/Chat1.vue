@@ -1,80 +1,106 @@
 <template>
-  <div v-if="!loggedIn" class="flex h-screen items-center justify-center">
-    <div class="bg-white shadow-lg">
-      <div class="flex items-center w-full h-20 bg-purple-600">
-        <i class="fas fa-bezier-curve fa-3x mx-auto text-white">LOGIN</i>
+  <div>
+    <div class="chat-box flex">
+      <div class="fixed w-full bg-white rounded-lg ">
+        <div  class="bg-purple-600 h-16 text-white shadow-md"
+              style="overscroll-none;">
+          <div class="text-white font-bold tracking-wide text-xl text-center">Messages</div>
+            <div class="text-gray-900 text-base" >
+              <ul class="m-8 list-none overflow-y-scroll" style="bg-page" >
+                <li class="bg-white w-3/4 mx-4 my-2 p-2 rounded-lg clearfix" 
+                    v-for="(message, index) in messages" 
+                    :key="index">
+                              {{ message.message }}
+                </li>
+                <li class="bg-white float-right w-3/4 mx-4 my-2 p-2 rounded-lg clearfix">
+                  <strong>Name2</strong> 
+                  message text
+                </li>
+              </ul>
+          </div>
+        </div>  
+        <div class="fixed w-full flex justify-between bg-white" style="bottom: 0px;" id="frmChat">
+          <input class=" flex-grow m-2 py-2 px-4 mr-1 rounded-full border border-gray-300 bg-gray-200 resize-none"
+                  type="text" 
+                  v-model="newMessage"
+                  @keyup.enter="sendMessage"
+                  name="message" 
+                  placeholder="Enter your message..."
+                  style="outline: none;" required/>
+                    <!-- <span class="text-muted">user is typing...</span> -->
+          <button class="m-2" style="outline: none;" type="button" @click="sendMessage">
+            <svg
+              class="svg-inline--fa text-purple-600 fa-paper-plane fa-w-16 w-12 h-12 py-2 mr-2"
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fas"
+              data-icon="paper-plane"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+              >
+              <path
+                fill="currentColor"
+                d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"
+              />
+            </svg>
+          </button>  
+        </div>
       </div>
-      <form ref="loginform" @submit.prevent="login()" class=" mx-auto p-4">
-        <div class="mb-4">
-          <label for="email" class="block mb-1 text-sm">Email</label>
-          <input
-            type="email"
-            v-model="email"
-            name="email"
-            class="w-full border rounded px-3 py-2"
-            required
-          />
-        </div>
-        <div class="mb-4">
-          <label for="password" class="block mb-1 text-sm">Password</label>
-          <input
-            type="password"
-            v-model="password"
-            name="password"
-            class="w-full border rounded px-3 py-2"
-            required
-          />
-        </div>
-        <button
-          @click.prevent="login"
-            type="submit"
-            class="bg-purple-600 text-white font-semibold py-2 px-10 w-full rounded hover:bg-yellow-500 cursor-pointer text-center"
-        >
-          Login
-        </button>
-      </form>
     </div>
   </div>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      email: '',
-      password: '',
-      error: {},
-      loggedIn: false
-    }
-  },
-  
-  methods: {
+  import navbar from '~/components/navbar'
+  export default {
+    // async mounted(){
+    //      this.$echo.channel('chat')
+    //     .listen('MessageSent', (event) => {
+    //       this.messages.push(event.message);
+    //     });
 
-    async login() {
-
-      await this.$axios.get('/../sanctum/csrf-cookie')
-      await this.$auth.login({
-        data: {
-          email: this.email,
-          password: this.password
-        },
-      })
+    // },
+  components: {
+      navbar
     },
 
-    redirectToHomeIfLoggedIn() {
-      if (this.$auth.loggedIn) {
-        this.$router.push(this.$cookies.get('auth.redirect') ?? 'Chat')
-        return
-      }
-      this.loggedIn = false
+  middleware: 'auth',
+
+  data() {
+    return {
+    messages: [],
+    newMessage:''
     }
   },
 
-  mounted() {
-    this.redirectToHomeIfLoggedIn()     
-  }
+  created() {
+    this.fetchMessages();
+  },
+
+  methods:{
+     async fetchMessages(){
+        const response = await this.$axios.$get('messages', this.messages)
+        this.messages = response
+        console.log(response)
+    }, 
+
+
+    async sendMessage() {
+      console.log(this, this.messages);
+
+      this.messages.push({
+        message: this.newMessage
+      });
+
+      await this.$axios.$post('messages', this.newMessage);
+
+      this.newMessage=''
+    }   
+  } 
 }
 </script>
+
 <style>
 body {
   background-color: #e9e6ee;
