@@ -67,6 +67,7 @@ export default {
         return
       }
       this.loggedIn = false
+      this.$router.push('login')
     }
   },
 

@@ -20,10 +20,12 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('auth/login', 'App\Http\Controllers\API\AuthController@login');
+Route::post('auth/register', 'App\Http\Controllers\API\AuthController@register');
+
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('auth/user', 'App\Http\Controllers\API\AuthController@user');
-    Route::post('auth/logout', 'App\Http\Controllers\API\AuthController@logout');
 });
 
 Route::post('auth/logout', 'App\Http\Controllers\API\AuthController@logout');
+

@@ -83,7 +83,9 @@ export default {
   },
     methods: {
       async register() {
-        // this.$axios.post('/register', this.form)
+        await this.$axios.get('/../sanctum/csrf-cookie')
+        await this.$axios.post('/auth/register', this.form)
+        console.log('success')
         this.$router.push('/login')
       }
     }

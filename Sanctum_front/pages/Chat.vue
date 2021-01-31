@@ -262,9 +262,7 @@
   },
 
   created() {
-    this.fetchMessages();
-
-        
+    this.fetchMessages();    
   },
 
   methods:{
