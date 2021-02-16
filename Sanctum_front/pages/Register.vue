@@ -1,72 +1,72 @@
 <template>
-   <div class="flex h-screen items-center justify-center flex-wrap">
-      <div class="bg-white shadow-lg">
-        <div class="flex items-center w-full h-20 bg-purple-600">
-          <i class="mx-auto text-white">Register</i>
-        </div>
-        <form ref="loginform" @submit.prevent="login()" class="mx-auto p-4">
-          <div class="mb-4">
-            <label for="name" class="block mb-1 text-sm">Name:</label>
-            <input
-              type="text"
-              v-model="form.name"
-              class="w-full border rounded border-purple-300 px-3 py-2"
-              id="name"
-              required
-              />
-            <span class="text-red-600" v-if="errors.name">
-                {{ errors.name[0] }}
-            </span>
-          </div>  
-          <div class="mb-4">
-            <label for="email" class="block mb-1 text-sm">Email</label>
-            <input
-            type="email"
-            v-model="form.email"
-            id="email"
-            class="w-full border rounded border-purple-300 px-3 py-2"
-            required
-            />
-            <span class="text-red-600" v-if="errors.email">
-                {{ errors.email[0] }}
-            </span>
-          </div>
-          <div class="mb-4">
-            <label for="password" class="block mb-1 text-sm">Password</label>
-            <input
-            type="password"
-            v-model="form.password"
-            id="password"
-            class="w-full border rounded border-purple-300 px-3 py-2"
-            required
-            />
-            <span class="text-red-600" v-if="errors.password">
-                {{ errors.password[0] }}
-            </span>
-          </div>
-          <div class="mb-4">
-            <label for="password_confirmation" class="block mb-1 text-sm">Confirm Password:</label>
-            <input
-            type="password"
-            v-model="form.password_confirmation"
-            id="password_confirmation"
-            class="w-full border rounded border-purple-300 px-3 py-2"
-            required
-            />
-            <span class="text-red-600" v-if="errors.password_confirmation">
-                {{ errors.password_confirmation[0] }}
-            </span>
-          </div>
-          <button
-            type="submit"
-            @click.prevent="register"
-            class="bg-purple-600 text-white font-semibold py-2 px-10 w-full rounded hover:bg-yellow-500 cursor-pointer"
-            >
-            Register
-          </button>
-        </form>
+  <div class="flex h-screen items-center justify-center flex-wrap">
+    <div class="bg-white shadow-lg">
+      <div class="flex items-center w-full h-20 bg-purple-600">
+        <i class="mx-auto text-white">Register</i>
       </div>
+      <form ref="loginform" @submit.prevent="login()" class="mx-auto p-4">
+        <div class="mb-4">
+          <label for="name" class="block mb-1 text-sm">Name:</label>
+          <input
+            type="text"
+            v-model="form.name"
+            class="w-full border rounded border-purple-300 px-3 py-2"
+            id="name"
+            required
+          />
+          <span class="text-red-600" v-if="errors.name">
+              {{ errors.name[0] }}
+          </span>
+        </div>  
+        <div class="mb-4">
+          <label for="email" class="block mb-1 text-sm">Email</label>
+          <input
+          type="email"
+          v-model="form.email"
+          id="email"
+          class="w-full border rounded border-purple-300 px-3 py-2"
+          required
+          />
+          <span class="text-red-600" v-if="errors.email">
+              {{ errors.email[0] }}
+          </span>
+        </div>
+        <div class="mb-4">
+          <label for="password" class="block mb-1 text-sm">Password</label>
+          <input
+          type="password"
+          v-model="form.password"
+          id="password"
+          class="w-full border rounded border-purple-300 px-3 py-2"
+          required
+          />
+          <span class="text-red-600" v-if="errors.password">
+              {{ errors.password[0] }}
+          </span>
+        </div>
+        <div class="mb-4">
+          <label for="password_confirmation" class="block mb-1 text-sm">Confirm Password:</label>
+          <input
+          type="password"
+          v-model="form.password_confirmation"
+          id="password_confirmation"
+          class="w-full border rounded border-purple-300 px-3 py-2"
+          required
+          />
+          <span class="text-red-600" v-if="errors.password_confirmation">
+              {{ errors.password_confirmation[0] }}
+          </span>
+        </div>
+        <button
+          type="submit"
+          @click.prevent="register"
+          class="bg-purple-600 text-white font-semibold py-2 px-10 w-full rounded hover:bg-yellow-500 cursor-pointer"
+        >
+          Register
+        </button>
+      </form>
     </div>
+  </div>
 </template>
 <script>
 export default {

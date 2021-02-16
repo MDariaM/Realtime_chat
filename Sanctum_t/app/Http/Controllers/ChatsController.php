@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Message;
 
-class ChatsController extends Controller
-{
+class ChatsController extends Controller{
     public function __construct(){
         $this->middleware('auth:sanctum');
     }
@@ -26,5 +25,4 @@ class ChatsController extends Controller
 
         return['status' => 'success'];
     }
-
 }

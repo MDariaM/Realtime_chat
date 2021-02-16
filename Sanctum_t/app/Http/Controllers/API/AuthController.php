@@ -26,9 +26,9 @@ class AuthController extends Controller
         return $user;
     }
 
-    public function login(Request $request)
-    {
+    public function login(Request $request){
         $credentials = $request->only('email', 'password');
+        
         if (Auth::attempt($credentials)) {
             return response()->json(['Success.']);
         }
@@ -36,14 +36,12 @@ class AuthController extends Controller
         return response()->json(['Unauthorized.'], Response::HTTP_UNAUTHORIZED);
     }
 
-    public function user(Request $request)
-    {
+    public function user(Request $request){
         $user = $request->user();
         return $user;
     }
 
-    public function logout(Request $request)
-    {
+    public function logout(Request $request){
         auth('web')->logout();
 
         return response()->json(['Success.']);

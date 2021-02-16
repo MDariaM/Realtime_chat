@@ -18,11 +18,9 @@
     methods: {
       async login() {
         await this.$axios.get('/../sanctum/csrf-cookie')
-
         this.$router.push({
             path: '/login'
         })
-
       },
 
       async logout() {
