@@ -33,3 +33,8 @@ window.Echo.channel('DemoChannel')
 .listen('WebsocketDemoEvent', (e) => {
     console.log(e)
 });
+
+window.Echo.channel('chat')
+.listen('MessageSent', (e) => {
+  this.messages.push(e.message);
+})

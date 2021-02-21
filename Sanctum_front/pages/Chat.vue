@@ -5,13 +5,16 @@
       <div class="flex flex-col w-full h-full pl-4 pr-4 py-4 -mr-4 text-white">
         <div class="flex flex-row items-center">
           <div class="flex flex-row items-center">
-            <div class="text-xl font-semibold">Messages</div>
+            <div class="text-xl font-semibold">Active Users</div>
           </div>
         </div>
+        <!-- <ul>
+          <li v-for="(user, index1) in users" :key="index1"></li>
+        </ul> -->
         <div class="mt-2 h-full overflow-hidden py-4 relative pt-2">
           <div class="-mx-4 flex flex-col divide-y h-full overflow-y-auto -mx-4">
             <div class="relative flex flex-row items-center p-4">
-              <div class="flex items-center justify-center h-10 w-10 rounded-full bg-pink-500 text-pink-300 font-bold flex-shrink-0">
+              <div class="flex items-center justify-center h-10 w-10 rounded-full bg-yellow-500 text-purple-700 font-bold flex-shrink-0">
                 T
               </div>
               <div class="flex flex-col flex-grow ml-3">
@@ -80,123 +83,16 @@
           <div class="font-semibold text-sm">UI Art Design</div>
           <div class="text-xs text-gray-500">Active</div>
         </div>
-      </div>
-      <div class="h-full overflow-hidden py-4">
-        <div class="h-full overflow-y-auto">
-          <div class="grid grid-cols-12 gap-y-2">
-            <div class="col-start-1 col-end-8 p-3 rounded-lg">
-              <div class="flex flex-row items-center">
-                <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                </div>
-                <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl" v-for= "(message, index) in messages" :key="index">
-                  <strong>{{ message.user.name }}</strong>
-                  <p>{{ message.message }}</p>  
-                </div>
-              </div>
-            </div>
-            <div class="col-start-1 col-end-8 p-3 rounded-lg">
-              <div class="flex flex-row items-center">
-                <div
-                    class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
-                >
-                  A
-                </div>
-                <div
-                    class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"
-                >
-                  <div>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing
-                    elit. Vel ipsa commodi illum saepe numquam maxime
-                    asperiores voluptate sit, minima perspiciatis.
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-start-6 col-end-13 p-3 rounded-lg">
-              <div class="flex items-center justify-start flex-row-reverse">
-                <div
-                    class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
-                >
-                  A
-                </div>
-                <div
-                    class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"
-                >
-                  <div>I'm ok what about you?</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-start-6 col-end-13 p-3 rounded-lg">
-              <div class="flex items-center justify-start flex-row-reverse">
-                <div
-                    class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
-                >
-                  A
-                </div>
-                <div
-                    class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"
-                >
-                  <div>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing. ?
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-start-1 col-end-8 p-3 rounded-lg">
-              <div class="flex flex-row items-center">
-                <div
-                    class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
-                >
-                  A
-                </div>
-                <div
-                    class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"
-                >
-                  <div>Lorem ipsum dolor sit amet !</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-start-6 col-end-13 p-3 rounded-lg">
-              <div class="flex items-center justify-start flex-row-reverse">
-                <div
-                    class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
-                >
-                  A
-                </div>
-                <div
-                    class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"
-                >
-                  <div>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing. ?
-                  </div>
-                  <div
-                      class="absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-gray-500"
-                  >
-                    Seen
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-start-1 col-end-8 p-3 rounded-lg">
-              <div class="flex flex-row items-center">
-                <div
-                    class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
-                >
-                  A
-                </div>
-                <div
-                    class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"
-                >
-                  <div>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Perspiciatis, in.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    </div>
+    <div class="h-full overflow-y-auto py-4">
+      <ul>
+        <li class="p-3 " v-for="(message,index) in messages" :key="index">
+          <strong class=" flex flex-1 items-center justify-center h-10 w-10 rounded-full bg-purple-500">{{message.user.name}}</strong>
+          <span class="ml-5 text-sm bg-white py-2 px-4 shadow rounded-xl">{{message.message}}</span>
+        </li>
+      </ul>
+    </div>
+
       <div class="flex flex-row items-center">
         <div class="flex flex-row items-center w-full border rounded-3xl h-12 px-2">
           <button class="flex items-center justify-center h-10 w-10 text-gray-400 ml-1">
@@ -242,27 +138,26 @@
 <script>
   
   export default {
-    // async mounted(){
-    //      this.$echo.channel('chat')
-    //     .listen('MessageSent', (event) => {
-    //       this.messages.push(event.message);
-    //     });
-
-    // },
-
-
-  // props:['user'],
 
   data() {
     return {
       messages: [],
       newMessage:'',
-      user:'Anna'
+      user:''
     }
   },
+  // async mounted(){
+  //        this.$echo.join('chat')
+  //       .listen('MessageSent', (event) => {
+  //         this.messages.push(event.message);
+  //       });
 
-  created() {
-    this.fetchMessages();    
+  //   },
+
+
+  
+  async created() {
+    this.fetchMessages();   
   },
 
   methods:{
