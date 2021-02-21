@@ -23,6 +23,8 @@ class ChatsController extends Controller{
             'message' => $request->message
         ]);
 
+        broadcast(new App\Events\MessageSent($message));
+
         return['status' => 'success'];
     }
 }
