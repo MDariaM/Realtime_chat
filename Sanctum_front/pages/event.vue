@@ -15,6 +15,14 @@
 
 <script>
   export default {
+        async mounted(){
+         this.$echo.channel('DemoChannel')
+        .listen('WebsocketDemoEvent', (event) => {
+          console.log(event);
+        });
+
+    },
+    
     methods: {
       async login() {
         await this.$axios.get('/../sanctum/csrf-cookie')
@@ -26,13 +34,6 @@
       async logout() {
          await this.$auth.logout();
       }
-    },
-    async mounted(){
-         this.$echo.channel('DemoChannel')
-        .listen('WebsocketDemoEvent', (event) => {
-          console.log(event);
-        });
-
     },
   }
   
