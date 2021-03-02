@@ -27,7 +27,9 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/laravel-echo',
   ],
+  
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
@@ -53,9 +55,21 @@ export default {
         tokenType: false
       }
     },
+
     redirect: {
       logout: '/login'
     }
+  },
+
+  echo:{
+    authEndpoint: 'http://localhost:8000/api/' + 'broadcasting/auth',
+    authModule: true,
+    broadcaster: 'pusher',
+    key: 'anyKey',
+    wsHost: '127.0.0.1',
+    wsPort: 6001,
+    forceTLS: false,
+    disableStats: true
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)

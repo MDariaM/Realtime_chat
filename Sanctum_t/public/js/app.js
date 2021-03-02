@@ -25489,6 +25489,8 @@ window.Echo.channel('DemoChannel').listen('WebsocketDemoEvent', function (e) {
   console.log(e);
 });
 window.Echo.channel('chat').listen('MessageSent', function (e) {
+  console.log(e);
+
   _this.messages.push(e.message);
 });
 

@@ -146,33 +146,40 @@
       user:''
     }
   },
-  // async mounted(){
-  //        this.$echo.join('chat')
-  //       .listen('MessageSent', (event) => {
-  //         this.messages.push(event.message);
-  //       });
+  async mounted(){
+           console.log(123);
+         this.$echo.channel('chat')
+        .listen('MessageSent', (event) => {
+          this.messages.push(event.message);
+          console.log(event);
+        });  
 
-  //   },
+        // this.$echo.channel('DemoChannel')
+        // .listen('WebsocketDemoEvent', (event) => {
+        //   // this.messages.push(event.message);
+        //   console.log(event);
+        // });  
+    },
 
-
-  
   async created() {
-    this.fetchMessages();   
+    this.fetchMessages();  
+   
   },
+    
 
   methods:{
     async fetchMessages(){
       const response = await this.$axios.$get('messages', this.messages)
       this.messages = response
       // console.log(response);
-    }, 
+    },
 
     async sendMessage() {
   
       // console.log(this.newMessage, this.user);
       // console.log(this.messages);
       this.messages.push ({
-        user:this.user,
+        user: this.user,
         message: this.newMessage
       });
 

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/event', function () {
     broadcast(new App\Events\WebsocketDemoEvent('some data'));
     return view('welcome');
 });
